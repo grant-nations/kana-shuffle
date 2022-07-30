@@ -1,4 +1,4 @@
-const katakana = require("./katakana");
+const kana = require("./utils/kana");
 
 let fonts = {
     Roboto: {
@@ -17,5 +17,3 @@ let pdfDoc = printer.createPdfKitDocument(docDefinition, {});
 pdfDoc.pipe(fs.createWriteStream('document.pdf'));
 
 pdfDoc.end();
-
-console.log(katakana.getKatakana());
