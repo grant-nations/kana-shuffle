@@ -1,32 +1,59 @@
-const kana = require("./utils/kana");
+const {HIRAGANA, KATAKANA} = require("./utils/kana");
+const fs = require("fs");
+const PdfPrinter = require("pdfmake");
+const {shuffle} = require("./utils/shuffle");
 
-let fonts = {
+const fonts = {
     NotoSansJP: {
-        normal: './fonts/NotoSansJP-Regular.otf'
+        normal: './fonts/NotoSansJP-Regular.otf',
+        bold: './fonts/NotoSansJP-Bold.otf'
     }
 };
-let PdfPrinter = require("pdfmake");
-let printer = new PdfPrinter(fonts);
 
-let fs = require("fs");
+const createHiraganaPdf = () => {
 
-let docDefinition = {
-    content: [
-        {
-            table: {
-                body:[
-                    ["one", "two", "three", "four"],
-                    ["5", "6", "7", "8"],
-                    ["11", "12", "13", "14"]
-                ]
+    const hiragana = shuffle(HIRAGANA);
+
+    const hiraganaArrays = [];
+
+    for (let i = 0; i < hiragana.length;) {
+        const newHiraganaArray = [5];
+        for (let j = 0; j < 5; j++) {
+            newHiraganaArray[j] = hiragana[i];
+            i++;
+        }
+        hiraganaArrays.push(newHiraganaArray);
+    }
+
+    let printer = new PdfPrinter(fonts);
+
+    let docDefinition = {
+        content: [
+            {text: "Hiragana Shuffle", style: "header"},
+            {
+                table: {
+                    widths: ["*", "*", "*", "*", "*"],
+                    body: hiraganaArrays
+                }
+            }
+        ],
+        defaultStyle: {
+            font: "NotoSansJP",
+            fontSize: 12
+        },
+        styles: {
+            header: {
+                fontSize: 14,
+                bold: true,
+                alignment: "center",
+                margin: [0, 0, 0, 10]
             }
         }
-    ],
-    defaultStyle: {
-        font: "NotoSansJP"
-    }
-};
-let pdfDoc = printer.createPdfKitDocument(docDefinition, {});
-pdfDoc.pipe(fs.createWriteStream('document.pdf'));
+    };
+    let pdfDoc = printer.createPdfKitDocument(docDefinition, {});
+    pdfDoc.pipe(fs.createWriteStream('document.pdf'));
 
-pdfDoc.end();
+    pdfDoc.end();
+}
+
+createHiraganaPdf();
