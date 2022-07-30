@@ -2,6 +2,7 @@ const {HIRAGANA, KATAKANA, ROMAJI} = require("./kana");
 const fs = require("fs");
 const PdfPrinter = require("pdfmake");
 const {shuffle} = require("./shuffle");
+const {capitalize} = require("./capitalize");
 
 const types = {
     HIRAGANA : "hiragana",
@@ -19,16 +20,20 @@ const fonts = {
 const createPdf = (type) => {
 
     let characters = [];
+    let subheaderText = "";
 
     switch(type){
         case "hiragana":
             characters = HIRAGANA;
+            subheaderText = types.KATAKANA;
             break;
         case "katakana":
             characters = KATAKANA;
+            subheaderText = types.HIRAGANA;
             break;
         case "romaji":
             characters = ROMAJI;
+            subheaderText = `${types.KATAKANA} or ${types.HIRAGANA}`;
             break;
     }
 
@@ -50,7 +55,8 @@ const createPdf = (type) => {
     let docDefinition = {
         pageSize: "LETTER",
         content: [
-            {text: "Hiragana Shuffle", style: "header"},
+            {text:  `${capitalize(type)} Shuffle`, style: "header"},
+            {text: `Write the corresponding ${subheaderText} characters in the spaces next to the ${type} characters.`, style: 'subheader'},
             {
                 table: {
                     widths: ["*", "*", "*", "*", "*"],
@@ -68,7 +74,12 @@ const createPdf = (type) => {
                 bold: true,
                 alignment: "center",
                 margin: [0, 0, 0, 10]
-            }
+            },
+            subheader: {
+                fontSize: 12,
+                margin: [0, 0, 0, 10],
+                alignment: "center",
+            },
         }
     };
     let pdfDoc = printer.createPdfKitDocument(docDefinition, {});
