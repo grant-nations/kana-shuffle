@@ -8,9 +8,8 @@ const KATAKANA = [
     "マ", "ミ", "ム", "メ", "モ",
     "ヤ", "ユ", "ヨ",
     "ラ", "リ", "ル", "レ", "ロ",
-    "ワ", "ヰ", "ヱ", "ヲ",
+    "ワ", "ヲ",
     "ン",
-    "ヴ",
 
     "ガ", "ギ", "グ", "ゲ", "ゴ",
     "ザ", "ジ", "ズ", "ゼ", "ゾ",
@@ -43,9 +42,8 @@ const HIRAGANA = [
     "ま", "み", "む", "め", "も",
     "や", "ゆ", "よ",
     "ら", "り", "る", "れ", "ろ",
-    "わ", "ゐ", "ゑ", "を",
+    "わ", "を",
     "ん",
-    "ゔ",
 
     "が", "ぎ", "ぐ", "げ", "ご",
     "ざ", "じ", "ず", "ぜ", "ぞ",
@@ -68,6 +66,41 @@ const HIRAGANA = [
 
 ]
 
+const ROMAJI = [
+    "a", "i", "u", "e", "o",
+    "ka", "ki", "ku", "ke", "ko",
+    "sa", "shi", "su", "se", "so",
+    "ta", "chi", "tsu", "te", "to",
+    "na", "ni", "nu", "ne", "no",
+    "ha", "hi", "fu", "he", "ho",
+    "ma", "mi", "mu", "me", "mo",
+    "ya", "yu", "yo",
+    "ra", "ri", "ru", "re", "ro",
+    "wa", "o (wo)",
+    "n",
+
+    "ga", "gi", "gu", "ge", "go",
+    "za", "ji", "zu", "ze", "zo",
+    "da", "ji", "zu", "de", "do",
+    "ba", "bi", "bu", "be", "bo",
+    "pa", "pi", "pu", "pe", "po",
+
+    "kya", "kyu", "kyo",
+    "sha", "shu", "sho",
+    "cha", "chu", "cho",
+    "nya", "nyu", "nyo",
+    "hya", "hyu", "hyo",
+    "mya", "myu", "myo",
+    "rya", "ryu", "ryo",
+    "gya", "gyu", "gyo",
+    "ja", "ju", "jo",
+    "ja", "ju", "jo",
+    "bya", "byu", "byo",
+    "pya", "pyu", "pyo"
+
+]
+
 exports.KATAKANA = KATAKANA;
-exports.HIRAGANA = HIRAGANA
+exports.HIRAGANA = HIRAGANA;
+exports.ROMAJI = ROMAJI;
 
