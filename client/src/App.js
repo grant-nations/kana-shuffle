@@ -1,5 +1,4 @@
 import './App.styles';
-import {useEffect, useState} from "react";
 import DownloadMenu from "./components/downloadMenu/DownloadMenu.component";
 
 function App() {
