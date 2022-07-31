@@ -1,7 +1,7 @@
 import {BaseDownloadButton} from "./DownloadButton.styles";
 
-const DownloadButton = ({...props}) => {
-    return <BaseDownloadButton {...props} />
+const DownloadButton = ({children, ...props}) => {
+    return <BaseDownloadButton {...props} >{children}</BaseDownloadButton>
 }
 
 export default DownloadButton;

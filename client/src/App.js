@@ -13,10 +13,9 @@ function App() {
 
     return (
         <div>
-                <div>
-                    {!data ? "Loading..." : <DownloadMenu/>
-                    }
-                </div>
+            <div>
+                {!data ? "Loading..." : <DownloadMenu/>}
+            </div>
         </div>
     );
 }

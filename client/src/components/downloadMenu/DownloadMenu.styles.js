@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const Menu = styled.div`
   display: flex;
@@ -8,3 +9,7 @@ export const Menu = styled.div`
   margin: 20px auto;
   padding: 0 10px;
 `;
+
+export const DownloadIcon = styled(FontAwesomeIcon)`
+  margin: 0 10px;
+`
