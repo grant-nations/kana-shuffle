@@ -8,6 +8,7 @@ export const Menu = styled.div`
   align-items: center;
   max-width: 1100px;
   margin: 20px auto;
+  margin-bottom: 0;
   padding: 0 10px;
 `;
 
