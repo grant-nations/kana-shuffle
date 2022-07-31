@@ -1,14 +1,16 @@
-import './App.styles';
 import DownloadMenu from "./components/downloadMenu/DownloadMenu.component";
+import WelcomeMenu from "./components/welcomeMenu/WelcomeMenu.component";
+import {AppWrapper} from "./App.styles";
 
 function App() {
 
     return (
-        <div>
+        <AppWrapper>
             <div>
+                <WelcomeMenu/>
                 <DownloadMenu/>
             </div>
-        </div>
+        </AppWrapper>
     );
 }
 

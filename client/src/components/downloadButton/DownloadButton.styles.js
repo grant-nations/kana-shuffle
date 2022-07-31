@@ -28,7 +28,7 @@ export const BaseDownloadButton = styled.button`
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  width: 100%;
+  flex: 1 1 0;
 
   &:after {
     background-clip: padding-box;
