@@ -12,17 +12,17 @@ const types = {
 
 const fonts = {
     NotoSansJP: {
-        normal: './fonts/NotoSansJP-Regular.otf',
-        bold: './fonts/NotoSansJP-Bold.otf'
+        normal: './server/fonts/NotoSansJP-Regular.otf',
+        bold: './server/fonts/NotoSansJP-Bold.otf'
     }
 };
 
-const createPdf = (type) => {
+const createPdf = (type, callback) => {
 
     let characters = [];
     let subheaderText = "";
 
-    switch(type){
+    switch (type) {
         case "hiragana":
             characters = HIRAGANA;
             subheaderText = types.KATAKANA;
@@ -55,8 +55,11 @@ const createPdf = (type) => {
     let docDefinition = {
         pageSize: "LETTER",
         content: [
-            {text:  `${capitalize(type)} Shuffle`, style: "header"},
-            {text: `Write the corresponding ${subheaderText} characters in the spaces next to the ${type} characters.`, style: 'subheader'},
+            {text: `${capitalize(type)} Shuffle`, style: "header"},
+            {
+                text: `Write the corresponding ${subheaderText} characters in the spaces next to the ${type} characters.`,
+                style: 'subheader'
+            },
             {
                 table: {
                     widths: ["*", "*", "*", "*", "*"],
@@ -83,8 +86,17 @@ const createPdf = (type) => {
         }
     };
     let pdfDoc = printer.createPdfKitDocument(docDefinition, {});
-    pdfDoc.pipe(fs.createWriteStream('document.pdf'));
 
+    let chunks = [];
+    let result;
+
+    pdfDoc.on('data', function (chunk) {
+        chunks.push(chunk);
+    });
+    pdfDoc.on('end', function () {
+        result = Buffer.concat(chunks);
+        callback(result);
+    });
     pdfDoc.end();
 }
 
